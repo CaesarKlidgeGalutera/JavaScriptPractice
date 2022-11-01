@@ -21,7 +21,7 @@ function person(userName) {
 
 console.log(person("Cymr")); //Calling the person function with one argument invokes the person function with one parameter
 
-//Like in PHP, required in functions are not required.
+//Like in PHP, return in functions are not required.
 function addNum() {
   sum = sum + 1;
   //the return value of this function is undefined as it does not have a return keyword
