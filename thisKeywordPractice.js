@@ -72,3 +72,83 @@ class myClass {
 
 const user = new myClass("Klidge");
 user.getName();
+
+console.log("----Example 5----");
+
+function makeUser() {
+  return {
+    name: "Klidge",
+    getName() {
+      return this;
+    },
+  };
+}
+console.log(makeUser().getName().name);
+
+console.log("----Example 6----");
+
+this.name = "Callback Function";
+
+const userMe = {
+  name: "Caesar Klidge",
+  logMessage() {
+    console.log(this.name);
+  },
+};
+
+//setTimeout(userMe.logMessage,1000); //This is a call back function, it copies the logMessage function as a parameter, and it doesn't have access anymore in userMe object, instead it has access on window object
+
+userMe.logMessage(); //since we call it as a function, this is now binded in the userMe object
+
+console.log("----Example 7----");
+
+myName = "Lucy"; //global
+
+const yourUser = {
+  myName: "Daisy",
+
+  greet() {
+    return "Hello, " + this.myName + "!";
+  },
+
+  farewell: function () {
+    let myNested = () => {
+      console.log(this.myName);
+    };
+    myNested();
+  },
+};
+
+console.log(yourUser.greet());
+yourUser.farewell();
+
+console.log("----Example 8----");
+
+length = 2;
+
+const object = {
+  length: 4,
+  method: function () {
+    function you() {
+      console.log(this.length);
+    }
+    you(); //since this is not an arrow function, its parent is window object, output is 1
+  },
+};
+
+object.method();
+
+console.log("----Example 8----");
+
+function callback() {
+  console.log(this.length);
+}
+
+const object2 = {
+  length: 5,
+  method() {
+    arguments[0]();
+  },
+};
+
+object2.method(callback, 2, 3);
